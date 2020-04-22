@@ -1,4 +1,4 @@
-package com.austria.language.masteral.constants;
+package com.austria.language.masteral.ae_constants;
 
 public class Main {
 
