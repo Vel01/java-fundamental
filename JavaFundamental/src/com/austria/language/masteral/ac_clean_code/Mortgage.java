@@ -1,4 +1,4 @@
-package com.austria.language.masteral.ab_control_flow.project;
+package com.austria.language.masteral.ac_clean_code;
 
 import java.text.NumberFormat;
 import java.util.Scanner;
@@ -36,8 +36,10 @@ public class Mortgage {
         PRINT total mortgage
          */
 
+
         getMortgage();
     }
+
 
     private static void getMortgage() {
 
@@ -48,19 +50,40 @@ public class Mortgage {
         System.out.print("Period (Years): ");
         byte period = (byte) validation("Period (Years): ", getInput.nextByte(), 1, 30);
 
-        System.out.println("Mortgage: " + getMortgage(principal, annualInterestRate, period));
+        getMortgage(principal, annualInterestRate, period);
+
     }
 
-    private static String getMortgage(int principal, float annualInterestRate, int period) {
+    private static void getMortgage(int principal, float annualInterestRate, int period) {
 
         final byte PERCENT = 100;
         final byte MONTHS_IN_YEAR = 12;
 
         float interestRate = ((annualInterestRate / PERCENT) / MONTHS_IN_YEAR);
         int number_of_payments = period * MONTHS_IN_YEAR;
-        float formula = (float) (interestRate * (Math.pow(1 + interestRate, number_of_payments))
+
+        float mortgage = principal * (float) (interestRate * (Math.pow(1 + interestRate, number_of_payments))
                 / (Math.pow(1 + interestRate, number_of_payments) - 1));
-        return NumberFormat.getCurrencyInstance().format(principal * formula);
+
+        System.out.println("\nMORTGAGE\n---------\nMonthly Payments: "
+                + NumberFormat.getCurrencyInstance().format(mortgage)
+                + "\n\nPAYMENT SCHEDULE\n----------------");
+        paymentSchedule(mortgage, principal, interestRate, number_of_payments);
+
+    }
+
+    private static void paymentSchedule(double mortgage, int principal, float interestRate, int number_of_payments) {
+
+        double remaining_payment = mortgage;
+        int payment_made = 0;
+        while (remaining_payment != 0) {
+
+            remaining_payment = principal * ((Math.pow(1 + interestRate, number_of_payments) -
+                    Math.pow(1 + interestRate, ++payment_made)) / (Math.pow(1 + interestRate, number_of_payments) - 1));
+
+            System.out.println(NumberFormat.getCurrencyInstance().format(remaining_payment));
+        }
+
     }
 
     private static float validation(String message, float input, int minimum, int maximum) {
