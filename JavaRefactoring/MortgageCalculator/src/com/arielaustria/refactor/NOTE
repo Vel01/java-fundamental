@@ -1,0 +1,43 @@
+
+    /*
+        Suppose you take out a 30 year mortgage for $100,000 at 7% interest ,
+        and want to know the monthly payments. To do that, you divide the interest
+        rate by 12 to get (.07/12) = .00583; and multiply 30 x 12 = 360 to get the
+        number of payments. Then the formula gives you:
+        payment = [$100,000(1 + .00583)360 x .00583] / [(1 + .00583)360 - 1] = $665
+
+        WHILE principal is not equal to 1000 OR less than or equal to 1000000
+            PRINT Enter a number between 1,000 and 1,000,000 (inclusive)
+        WHILE annual interest rate is not greater than 0 and not less than or equal to 30
+            PRINT Enter a value greater than 0 and less than or equal to 30 (inclusive)
+        WHILE period is not greater or equal to 1 and less than or equal to 30
+            PRINT Enter a value between 1 and 30 (inclusive)
+        IF inputs are valid
+            calculate, and use those values to get the total mortgage
+        END OF IF
+        PRINT total mortgage
+
+        Payment Schedule
+        p = principal
+        r = interest rate
+        n = number of payments
+        m = payment made
+
+        m = p [((1 + r) ^ n) - ((1 + r) ^ m) / ((1 + r) ^ n) - 1)];
+
+   remaining_payment = principal * ((Math.pow(1 + interestRate, number_of_payments) -
+                    Math.pow(1 + interestRate, ++payment_made)) / (Math.pow(1 + interestRate, number_of_payments) - 1));
+
+
+	Output
+	principal: 100_000
+	anual interest rate: 4
+	period: 10
+
+	mortgage
+	monthly payments: 1,012.45
+
+	payment schedule
+	99,320.88
+	...
+     */
