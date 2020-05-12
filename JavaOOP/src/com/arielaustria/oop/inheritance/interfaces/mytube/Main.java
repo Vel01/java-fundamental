@@ -2,6 +2,7 @@ package com.arielaustria.oop.inheritance.interfaces.mytube;
 
 public class Main {
 
+    //nice
     public static void main(String[] args) {
         var video = new Video();
         video.setFileName("birthday.mp4");
